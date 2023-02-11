@@ -1,6 +1,5 @@
-version: '3.7'
+version: "3.7"
 
-# Prisma "mongodb://root:root@localhost:27017/db?authSource=admin"
 services:
   mongo:
     build: ./mongodb_replica
@@ -12,7 +11,7 @@ services:
     ports:
       - '27017:27017'
     volumes:
-      - mongo-data:/data/db
+      - ~/volumes/mongodb:/data/db
 
   mongo-express:
     image: mongo-express:latest
@@ -26,11 +25,3 @@ services:
       ME_CONFIG_MONGODB_ADMINPASSWORD: root
       ME_CONFIG_MONGODB_SERVER: mongo
       ME_CONFIG_MONGODB_PORT: "27017"
-
-volumes:
-  mongo-data:
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: /media/data/docker/docker-compose/single-replica-set-mongo-mongo-express/data
